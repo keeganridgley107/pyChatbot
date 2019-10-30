@@ -106,3 +106,8 @@ venv.bak/
 
 # IDE 
 .vscode/
+
+# DNN / Model data 
+#  files from Tensorflow / tflearn 
+checkpoint
+model.*
