@@ -12,7 +12,7 @@ stemmer = LancasterStemmer()
 with open("intents.json") as file:
     data = json.load(file)
 
-# check for training data; if trained load data 
+# load / save for word data
 try:
     with open("data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
@@ -84,6 +84,8 @@ net = tflearn.regression(net)
 model = tflearn.DNN(net)
 
 # load trained model; else train & save model
+#   NOTE: if intents file is updated =>
+#   comment out load, delete model files & re-train model
 try:
     model.load("model.tflearn")
 except:
@@ -92,3 +94,52 @@ except:
     model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
     # save the trained model
     model.save("model.tflearn")
+
+def bag_of_words(sentance, words):
+    """
+    Turn a sentance into a one hot encoded bag of words 
+
+    Returns : numpy array 
+    """
+    # setup list with 0 for # of words
+    bag = [0 for _ in range(len(words))]
+    
+    s_words = nltk.word_tokenize(sentance)
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
+
+    # check if sentance words are in list; set bag = 1 if exists
+    for se in s_words:
+        for i, w in enumerate(words): 
+            if w == se:
+                bag[i]= (1)
+
+    return np.array(bag)
+
+def chat():
+    """
+    Main chat function
+    """
+    print("start talking with the bot! (type quit to leave)")
+    while True:
+        imp = input("You: ")
+        if imp.lower() == "quit":
+            break
+        # predict expects a list, => list comprehension to create one out of b_o_W() return 
+        results = model.predict([bag_of_words(imp, words)])
+        
+        # return index of greatest value in list 
+        results_index = np.argmax(results)
+        # label of highest probability 
+        tag = labels[results_index]
+
+        # debug
+        print(tag)
+
+        for tg in data["intents"]:
+            if tg['tag'] == tag:
+                responses = tg['responses']
+
+        # print random response from list with matching tag
+        # TODO: improve  
+        print(random.choice(responses))
+chat()

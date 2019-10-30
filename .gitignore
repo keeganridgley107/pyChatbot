@@ -111,3 +111,4 @@ venv.bak/
 #  files from Tensorflow / tflearn 
 checkpoint
 model.*
+data.pickle 
