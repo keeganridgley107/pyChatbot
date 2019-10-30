@@ -125,7 +125,7 @@ def chat():
         if imp.lower() == "quit":
             break
         # predict expects a list, => list comprehension to create one out of b_o_W() return 
-        results = model.predict([bag_of_words(imp, words)])
+        results = model.predict([bag_of_words(imp, words)])[0]
         
         # return index of greatest value in list 
         results_index = np.argmax(results)
@@ -133,13 +133,17 @@ def chat():
         tag = labels[results_index]
 
         # debug
-        print(tag)
+        # print(tag)
 
-        for tg in data["intents"]:
-            if tg['tag'] == tag:
-                responses = tg['responses']
+        # print response if confidence is 70% or print idk msg
+        if results[results_index] > 0.7:
+            for tg in data["intents"]:
+                if tg['tag'] == tag:
+                    responses = tg['responses']
 
-        # print random response from list with matching tag
-        # TODO: improve  
-        print(random.choice(responses))
+            # print random response from list with matching tag
+            # TODO: improve  
+            print(random.choice(responses))
+        else:
+            print("I don't understand, sorry! Please try again!")
 chat()
