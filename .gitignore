@@ -103,3 +103,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# IDE 
+.vscode/
+
+# DNN / Model data 
+#  files from Tensorflow / tflearn 
+checkpoint
+model.*
+data.pickle 
