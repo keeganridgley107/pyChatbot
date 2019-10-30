@@ -1,13 +1,13 @@
 {
     "intents": [{
             "tag": "greeting",
-            "patterns": ["hi", "how are you", "hello", "whats up", "hey"],
+            "patterns": ["Hi", "Hello", "Hey", "Yo", "Hey there", "Is anyone there?"],
             "responses": ["Hello!", "Good to meet you!", "Hi there, how can I help?", "Hello there!"],
             "context_set": ""
         },
         {
             "tag": "name",
-            "patterns": ["What's your name?", "What should I call you?", "What is your name?", "What are you?"],
+            "patterns": ["What's your name?", "What should I call you?", "What is your name?"],
             "responses": ["I'm Nori!", "My name is Nori!", "Nori!"],
             "context_set": ""
         },{
@@ -17,8 +17,33 @@
             "context_set": ""
         },{
             "tag": "why",
-            "patterns": ["What's the point of this?", "Why do you exist?", "What can you do?", "What is this?", "What do you do?", "what's the point?"],
+            "patterns": ["What's the point of this?", "Why do you exist?", "what's the point?"],
             "responses": ["I don't know!", "I'm not sure yet!", "I'm figuring that out as I go!", "I haven't found out yet!"],
+            "context_set": ""
+        },{
+            "tag": "goodbye",
+            "patterns": ["Bye", "Goodbye!", "See ya later", "Goodbye Nori", "I'm leaving"],
+            "responses": ["Bye!", "Talk to you later!", "Come back soon!", "Goodbye friend!", "see you later!", "Type quit to exit program!"],
+            "context_set": ""
+        },{
+            "tag": "what_is",
+            "patterns": ["What is this?", "What are you?", "Is this a chatbot?", "Are you a chatbot?"],
+            "responses": ["I'm a FAQ chatbot, based on a dog!", "I'm a chatbot built using a wee neural net!"],
+            "context_set": ""
+        },{
+            "tag": "what_can",
+            "patterns": ["What can you do?", "What does this do?", "What can this do?" ],
+            "responses": ["I can answer questions!", "I'm capable of answering common questions defined in my intents file! :)"],
+            "context_set": ""
+        },{
+            "tag": "how_are",
+            "patterns": ["How are you?", "How you doing?" ],
+            "responses": ["I'm doing good!", "I'm good :)"],
+            "context_set": ""
+        },{
+            "tag": "update",
+            "patterns": ["What's up?", "What's new?" ],
+            "responses": ["Not much, waiting for new features :)", "Nothing really.", "I just woke up from a nap!"],
             "context_set": ""
         }
 

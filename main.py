@@ -85,8 +85,9 @@ model = tflearn.DNN(net)
 
 # load trained model; else train & save model
 #   NOTE: if intents file is updated =>
-#   comment out load, delete model files & re-train model
+#   comment out load, in nori.py
 try:
+    #nori.py
     model.load("model.tflearn")
 except:
     # pass model training data
@@ -133,10 +134,11 @@ def chat():
         tag = labels[results_index]
 
         # debug
+        print("Index was: {}".format(results[results_index]))
         # print(tag)
 
         # print response if confidence is 70% or print idk msg
-        if results[results_index] > 0.7:
+        if results[results_index] > 0.8:
             for tg in data["intents"]:
                 if tg['tag'] == tag:
                     responses = tg['responses']
