@@ -2,7 +2,7 @@
 
 A wee chatbot inspired by my dog Nori.
 
-It is based on a simple neural network. 
+It's based on a simple neural network. 
 
 It uses tensorflow, tflearn, nltk and numpy. 
 
