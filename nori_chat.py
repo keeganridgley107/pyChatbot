@@ -151,7 +151,7 @@ def main():
                 # TODO: improve  
                 print(random.choice(responses))
             else:
-                print("I don't understand, sorry! Please try again!")
+                print("Sorry, I don't understand! Please try again!")
     chat()
 
 if __name__ == '__main__':
